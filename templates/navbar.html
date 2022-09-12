@@ -1,0 +1,9 @@
+
+<nav class="navbar navbar-inverse">
+    <div class="navbar-brand">
+      {% if 'login' in session %}
+      <img src="static/upload/{{session.image}}" width="50" height="50" />&nbsp; <span class="text-capitalize text-warning">Welcome :{{session.username}}</span>
+      &nbsp; <a href="/logout"> Log out</a>
+      {% endif %}
+    </div>
+</nav>

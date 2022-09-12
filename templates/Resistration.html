@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<a href="/"> Home Page </a> &nbsp;&nbsp;
+<a href="/service">Details</a> &nbsp;&nbsp;
+<a href="/">Login Page</a>&nbsp;&nbsp;
+<h2 align="center"> Registration Page</h2><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 card ">
+                <h4 class="text-center text-danger"> Registration </h4>
+                <!-- for insert the file we use (enctype) without this u can't add file  -->
+                <form name="frm" action="/insert" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="xid"/>
+                    <label> Username </label>
+                    <input type="text" class="form-control" name="xuser"/>
+                    <label> Phone </label>
+                    <input type="tel" class="form-control"  name="xphone"/>
+                    <label> Email </label>
+                    <input type="email" class="form-control" name="xmail" placeholder="xyz@gmail.com"/>
+                    
+                    <label> password </label>
+                    <input type="password" class="form-control"  name="xpass"/>
+                    <label> confirm password </label>
+                    <input type="password" class="form-control"  name="xvpass"/><br>
+                    <label> Upload  </label>
+                    <input type="file" name="xfile" class="form-control" /><br/>
+                    <input type="submit" class="btn btn-danger" value="Register"><br>
+                </form> 
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+    {{mydata}}
+{% endblock %}

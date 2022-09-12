@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% include 'navbar.html' %}
+{% block content %}
+
+
+<h1 align="center"> Home Page </h1><br><br>
+<h1 align="center"><br><br>
+    <a href="/">Login</a>&nbsp;&nbsp;
+</h1>
+
+<h1 align="center">
+    <a href="/Resistration">Registration</a>&nbsp;&nbsp;
+    <!-- for showing the cookies -->
+    {{resp}}
+</h1>
+{{session.username}}
+{% endblock %}

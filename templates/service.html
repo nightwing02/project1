@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="contaier">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <form name="frm2" action="/delete" method="post">
+            <table class="table">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>C Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                {% for item in mydata %}
+                <tr>
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                    <td>{{item[4]}}</td>
+                    <td>{{item[5]}}</td>
+                    <td> <a href="/Edit/{{item[1]}}">Edit</a></td>
+                    <td> <a href="/del/{{item[1]}}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+{{mydata1}}
+{% endblock %}

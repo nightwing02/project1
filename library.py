@@ -111,22 +111,3 @@ class db:
         self.__conn.commit()
         return st
   
-
-
-
-
-
-
-
-#ob=db()
-# data={"name":"Sumit Kalla","sale":8900,"city":"Pali","phone":"987654321"}
-# ss=ob.insertdata("employee",data)
-# data={"name":"Amitab ","sale":8500,"city":"Jodhpur","phone":"987654321"}
-# ss=ob.insertdata("employee",data)
-# data={"name":"Bhagwan","sale":6300,"city":"Jaipur","phone":"987654321"}
-# ss=ob.insertdata("employee",data)
-
-# print(ss)
-#print(ob.getdata("employee"))
-# ss=ob.getSingleData("employee","city","jaipur")
-# print(ss)

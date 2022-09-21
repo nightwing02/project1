@@ -64,47 +64,51 @@ def service():
 @app.route("/insert", methods=['POST','GET'])
 def insertdata():
     message=""
-    if(request.method=="POST"):
-        user=request.form['xuser']
-        email=request.form['xmail']
-        phone=request.form['xphone']
-        password=request.form['xpass']
-        vpass=request.form['xvpass']
-        myfile=request.files['xfile']
+    try:
+        if(request.method=="POST"):
+            user=request.form['xuser']
+            email=request.form['xmail']
+            phone=request.form['xphone']
+            password=request.form['xpass']
+            vpass=request.form['xvpass']
+            myfile=request.files['xfile']
+  
+            myfilename=(str(random.randint(11111,99999)) + "_" + myfile.filename)
+            myfile.save("static/upload/" + myfilename)
+            im = Image.open("static/upload/" + myfilename)
+            im = im.resize((250,250))
+            width, height = im.size
 
-        myfilename=(str(random.randint(11111,99999)) + "_" + myfile.filename)
-        myfile.save("static/upload/" + myfilename)
-        im = Image.open("static/upload/" + myfilename)
-        im = im.resize((250,250))
-        width, height = im.size
+            draw = ImageDraw.Draw(im)
+            text = "@TECHFLY"
 
-        draw = ImageDraw.Draw(im)
-        text = "@TECHFLY"
-
-        font = ImageFont.truetype('arial.ttf', 20)
-        textwidth, textheight = draw.textsize(text, font)
+            font = ImageFont.truetype('arial.ttf', 20)
+            textwidth, textheight = draw.textsize(text, font)
 
         
-        margin = 10
-        x = width - textwidth - margin
-        y = height - textheight - margin
+            margin = 10
+            x = width - textwidth - margin
+            y = height - textheight - margin
 
     
-        draw.text((x, y), text, font=font)
+            draw.text((x, y), text, font=font)
         
-        im.save("static/upload/"+ myfilename)
+            im.save("static/upload/"+ myfilename)
 
-        pw_hash = bcrypt.generate_password_hash(password)
-        dt={"user":user,"email":email,"phone":phone,"password":pw_hash.decode(),"vpass":vpass,"image":myfilename}
-        retValue=ob.insertdata("member",dt)
+            pw_hash = bcrypt.generate_password_hash(password)
+            dt={"user":user,"email":email,"phone":phone,"password":pw_hash.decode(),"vpass":vpass,"image":myfilename}
+            retValue=ob.insertdata("member",dt)
 
-        if(retValue['count']>=1):
-            message="You have Succesfully registered Yourself"
+            if(retValue['count']>=1):
+                message="You have Succesfully registered Yourself"
+            else:
+                message="You are not registered"
+            return render_template("Resistration.html",mydata=message)
         else:
-            message="You are not registered"
+            return render_template("404.html")
+    except:
+        message="Email Already Exist"
         return render_template("Resistration.html",mydata=message)
-    else:
-        return render_template("404.html")
 
 # for authentication for login / logout
 @app.route("/auth", methods=['GET','POST'])
